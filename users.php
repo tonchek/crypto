@@ -2,7 +2,7 @@
 include_once "header.php";
 ?>
 
-<a href="users.php">Uporabniki</a>
+<a href="index.php">Domov</a>
 
 <?php
 include_once "footer.php";
