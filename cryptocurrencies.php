@@ -1,8 +1,14 @@
 <?php
 include_once "header.php";
 ?>
-
+<?php
+    //prikaže povezavo samo administratorjem
+    if (admin()){
+?>
 <a href="cryptocurrency_add.php" class="btn btn-primary btn-xl">Dodaj valuto</a>
+<?php
+    }
+?>
 
 <section class="page-section portfolio">
     <div class="container">

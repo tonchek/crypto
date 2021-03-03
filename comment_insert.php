@@ -12,6 +12,6 @@
         $stmt->execute([$content,$user_id,$id]);
     }
 
-    header("Location: cryptocurrency.php?id=$id");
+    header("Location: cryptocurrency.php?id=$id#komentarji");
     die();
 ?>
