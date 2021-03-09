@@ -45,7 +45,64 @@ $crypto = $stmt->fetch();
         <div class="crypto_price">Trenutna cena: <span><?php echo $crypto['current_price'];?></span></div>
         <div class="crypto_rating">Trenutna ocena: <span><?php echo round($crypto['rating'],1);?></span></div>
     </div>
+    <?php
+        if (admin()) {
+    ?>
+    <div class="upload_slik">
+        <form action="image_insert.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo $crypto['id'];?>" />
+            <input type="text" name="title" placeholder="Vnesi naslov fotografije" /><br />
+            <input type="file" name="url" required="required" /><br />
+            <input type="submit" value="Naloži" />
+        </form>
+    </div>
+    <?php
+        }
+    ?>
 </section>
+<div class="bd-example">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <?php
+                $query = "SELECT * FROM images WHERE cryptocurrency_id = ?";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([$id]);
+                //koliko slik je v bazi za to kriptovaluto
+                $st = $stmt->rowCount();
+                for($i=0;$i++;$i<$st){
+                    if($i==0)
+                        echo '<li data-target="#carouselExampleCaptions" data-slide-to="'.$i.'" class="active"></li>';
+                    else
+                        echo '<li data-target="#carouselExampleCaptions" data-slide-to="'.$i.'"></li>';
+                }
+            ?>
+            
+        </ol>
+        <div class="carousel-inner">
+            <?php
+                while($row=$stmt->fetch()){
+                    echo '<div class="carousel-item active">';
+                    echo '<img src="..." class="d-block w-100" alt="...">';
+                    echo '<div class="carousel-caption d-none d-md-block">';
+                    echo '<h5>First slide label</h5>';
+                    echo '<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            ?>
+            
+
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Predhodnje</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Naslednje</span>
+        </a>
+    </div>
+</div>
 <div class="container d-flex justify-content-center mt-200">
     <div class="row">
         <div class="col-md-12">

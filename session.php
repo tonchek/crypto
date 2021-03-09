@@ -30,7 +30,7 @@ function admin() {
 
 //če trenutno prijavljeni ni admin, ga preusmeri na index
 function adminOnly() {
-    if (!isset($_SESSION['admin']) || ($_SESSION['admin'] == 1)){
+    if (!isset($_SESSION['admin']) || ($_SESSION['admin'] != 1)){
     header("Location: index.php");
     die();
     }

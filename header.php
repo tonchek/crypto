@@ -61,6 +61,13 @@ include_once "session.php";
                 </ul>
             </div>
         </div>
+        <?php
+            //pogledam če obstaja odziv
+            if(isset($_SESSION['odziv'])){
+                echo '<div id="odziv">'.$_SESSION['odziv'].'</div>';
+            }
+        ?>  
+        
     </nav>
     <section class="page-section mt-5">
         <div class="container">
