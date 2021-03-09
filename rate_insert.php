@@ -17,6 +17,8 @@
         $stmt->execute([$id,$id]);
     }
 
+    odziv("Uspešno dodana ocena!");
+
     header("Location: cryptocurrency.php?id=$id");
     die();
 ?>
